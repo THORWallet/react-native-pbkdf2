@@ -46,12 +46,7 @@ public class PBKDF2 extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void derivationKey(String pwd, String salt, Integer iterations, Promise promise) {
-        try {
-            String strs = derivationKey(pwd, salt, iterations, SHA512_DIGEST_LENGTH);
-            promise.resolve(strs);
-        } catch (Exception e) {
-            promise.reject("-1", e.getMessage());
-        }
+    public String derivationKey(String pwd, String salt, Integer iterations) {
+        return derivationKey(pwd, salt, iterations, SHA512_DIGEST_LENGTH);
     }
 }

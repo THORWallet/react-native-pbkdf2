@@ -5,16 +5,9 @@
 
 RCT_EXPORT_MODULE()
 
-RCT_EXPORT_METHOD(derivationKey:(NSString *)password salt:(NSString *)salt iterations:(nonnull int *)iterations
-                  resolver:(RCTPromiseResolveBlock)resolve
-                  rejecter:(RCTPromiseRejectBlock)reject) {
-    NSError *error = nil;
+RCT_EXPORT_BLOCKING_SYNCHRONOUS_METHOD(derivationKey:(NSString *)password salt:(NSString *)salt iterations:(nonnull int *)iterations) {
     NSString *data = [PBKDF2 derivationKey:password salt:salt iterations: iterations];
-    if (data == nil) {
-        reject(@"keygen_fail", @"Key generation failed", error);
-    } else {
-        resolve(data);
-    }
+    return data;
 }
 
 @end
