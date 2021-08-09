@@ -32,8 +32,7 @@ public class PBKDF2 extends ReactContextBaseJavaModule {
         return new String(hexChars);
     }
 
-    private static String derivationKey(String pwd, String salt, Integer cost, Integer length)
-            throws NoSuchAlgorithmException, InvalidKeySpecException {
+    private static String derivationKey(String pwd, String salt, Integer cost, Integer length) {
         PKCS5S2ParametersGenerator gen = new PKCS5S2ParametersGenerator(new SHA512Digest());
         gen.init(pwd.getBytes(StandardCharsets.UTF_8), salt.getBytes(StandardCharsets.UTF_8), cost);
         byte[] key = ((KeyParameter) gen.generateDerivedParameters(length)).getKey();
