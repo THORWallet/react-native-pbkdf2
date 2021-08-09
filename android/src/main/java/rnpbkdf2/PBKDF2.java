@@ -44,7 +44,7 @@ public class PBKDF2 extends ReactContextBaseJavaModule {
         return "PBKDF2";
     }
 
-    @ReactMethod
+    @ReactMethod(isBlockingSynchronousMethod = true)
     public String derivationKey(String pwd, String salt, Integer iterations) {
         return derivationKey(pwd, salt, iterations, SHA512_DIGEST_LENGTH);
     }
